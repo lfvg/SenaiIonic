@@ -14,3 +14,17 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+p{
+    overflow: inherit ;
+    text-overflow: inherit ;
+    white-space: normal;
+}
+
+.big-avatar{
+    width:100% !important;
+    height : 100% !important;
+    max-width: 120px !important;  //any size
+    max-height: 120px !important; //any size
+    border-radius: 50%;
+     
+}

@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{selectedUser.name.first}} {{selectedUser.name.last}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+        <ion-item overflow-scroll="false" text-center>
+           
+            <img class="big-avatar" src="{{selectedUser.picture.large}}">  
+          
+            <h1 *ngIf="selectedUser">
+                {{selectedUser.name.first}} {{selectedUser.name.last}}
+            </h1>
+        </ion-item>
+        <ion-item overflow-scroll="false" text-center>
+            <p *ngIf="selectedUser">
+                {{selectedUser.email}}
+            </p>
+            <p>
+                    DOT: {{year}}
+            </p>
+            <p *ngIf="selectedUser"> 
+                Tel: {{selectedUser.phone}}<br>
+                Cel: {{selectedUser.cell}}
+            </p>
+            <p *ngIf="selectedUser">
+                {{selectedUser.location.street}}, {{selectedUser.location.city}}, {{selectedUser.location.state}}, CEP: {{selectedUser.location.postcode}}
+            </p>
+            
+        </ion-item>
+</ion-content>
+      
