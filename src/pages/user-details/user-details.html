@@ -13,21 +13,32 @@
                 {{selectedUser.name.first}} {{selectedUser.name.last}}
             </h1>
         </ion-item>
-        <ion-item overflow-scroll="false" text-center>
-            <p *ngIf="selectedUser">
-                {{selectedUser.email}}
-            </p>
-            <p>
+       
+            <ion-item>
+                <ion-icon name="md-at" item-left></ion-icon>
+                <p *ngIf="selectedUser">
+                    {{selectedUser.email}}
+                </p>
+            </ion-item>
+            <ion-item>
+                    <ion-icon name="md-ionitron" item-left></ion-icon>
+                <p>
                     DOT: {{year}}
-            </p>
-            <p *ngIf="selectedUser"> 
-                Tel: {{selectedUser.phone}}<br>
-                Cel: {{selectedUser.cell}}
-            </p>
-            <p *ngIf="selectedUser">
-                {{selectedUser.location.street}}, {{selectedUser.location.city}}, {{selectedUser.location.state}}, CEP: {{selectedUser.location.postcode}}
-            </p>
-            
-        </ion-item>
+                </p>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="ios-call" item-left></ion-icon>
+                <p *ngIf="selectedUser"> 
+                    Tel: {{selectedUser.phone}}<br>
+                    Cel: {{selectedUser.cell}}
+                </p>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="md-map" item-left></ion-icon>
+                <p *ngIf="selectedUser">    
+                    {{selectedUser.location.street}}, {{selectedUser.location.city}}, {{selectedUser.location.state}}, CEP: {{selectedUser.location.postcode}}
+                </p>
+            </ion-item>
+       
 </ion-content>
       
