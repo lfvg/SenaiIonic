@@ -11,8 +11,6 @@ export class HomePage {
   items: any;
 
   constructor(public navCtrl: NavController, public http: Http) {
-    //this.items = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    //'american-football', 'boat', 'bluetooth', 'build'];
     this.http.get("https://randomuser.me/api/?results=25")
         .map(res => res.json())
         .subscribe(res => {

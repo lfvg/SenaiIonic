@@ -23,7 +23,7 @@
             <ion-item>
                     <ion-icon name="md-ionitron" item-left></ion-icon>
                 <p>
-                    DOT: {{year}}
+                    {{day}}/{{mt}}/{{year}}
                 </p>
             </ion-item>
             <ion-item>
@@ -36,9 +36,16 @@
             <ion-item>
                 <ion-icon name="md-map" item-left></ion-icon>
                 <p *ngIf="selectedUser">    
-                    {{selectedUser.location.street}}, {{selectedUser.location.city}}, {{selectedUser.location.state}}, CEP: {{selectedUser.location.postcode}}
+                    {{selectedUser.location.street}}, {{selectedUser.location.city}}, {{selectedUser.location.state}}
+                </p>
+                <p *ngIf="selectedUser">
+                    Postal code: {{selectedUser.location.postcode}}
                 </p>
             </ion-item>
+            
+            <div id="map_canvas"> 
+            </div>
+            
        
 </ion-content>
       

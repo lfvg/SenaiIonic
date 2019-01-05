@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
 import { DomDebouncer } from 'ionic-angular/umd/platform/dom-controller';
+import { GoogleMap, GoogleMaps, Environment, GoogleMapOptions} from '@ionic-native/google-maps';
 
 
 @Component({
@@ -10,25 +11,57 @@ import { DomDebouncer } from 'ionic-angular/umd/platform/dom-controller';
 })
 export class UserDetailsPage {
   selectedUser: any;
-  dob: Date;
   year: string;
   mt: string;
   day: string;
+  map: GoogleMap;
+  latitude: number;
+  longitude: number;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
     this.selectedUser = navParams.get('item');
-    var teste = this.selectedUser.dob.date
-    teste = teste.substring(0, teste.length -1);
-    //var arr = teste.split(":");
-    //"1958-08-20T06 :20 :21Z"
-    //teste = arr[0] + ":" + arr[1] + ":" + arr[2];
-    //console.log(typeof teste);
-    //var dateStr = JSON.parse(teste); 
-    //console.log(dateStr);
-    this.dob = new Date(teste);
-    this.year = this.dob.getFullYear().toString();
-    //console.log(this.dob);
-    //console.log(this.dob.getFullYear().toString());
+    var fullDate = this.selectedUser.dob.date
+    fullDate = fullDate.substring(0, fullDate.length -1);
+    var dob = new Date(fullDate);
+    this.year = dob.getFullYear().toString();
+    var tempDay = dob.getDate();
+    if(tempDay<10)
+      this.day = "0" + tempDay.toString();
+    else
+      this.day = tempDay.toString();
     
+    var tempMt = (dob.getMonth()+1);
+    if(tempMt<10)
+      this.mt = "0" + tempMt.toString();
+    else
+      this.mt = tempMt.toString();
+    console.log(typeof this.selectedUser.location.coordinates.latitude)
+    this.latitude = parseFloat(this.selectedUser.location.coordinates.latitude);
+    this.longitude = parseFloat(this.selectedUser.location.coordinates.longitude);
+    console.log(typeof this.latitude);
+    console.log(typeof 35.12345)
+    //alert(this.latitude + "," + this.longitude)
   }
+  
+  ionViewDidEnter(){ 
+    this.loadMap();
+  }
+  
+  loadMap(){
+    Environment.setEnv({
+      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyChQihRVsFR8rGDr1u2qBTfFGh6tXqWGiI',
+      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyChQihRVsFR8rGDr1u2qBTfFGh6tXqWGiI'
+    });
+    let mapOptions: GoogleMapOptions = {
+      camera: {
+        target: {
+          lat: this.latitude,
+          lng: this.longitude
+        },
+        zoom: 12,
+        tilt: 30
+      }
+    };
+    this.map = GoogleMaps.create('map_canvas', mapOptions);
+  }
+
 }
