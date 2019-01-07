@@ -21,7 +21,6 @@ export class HomePage {
         }, (err) => {
           alert("Falhou");
         });  
-    alert(typeof this.items)
   }
   itemTapped(event, item) {
     this.navCtrl.push(UserDetailsPage, {
@@ -39,14 +38,16 @@ export class HomePage {
     this.initializeItems();
 
     // set val to the value of the searchbar
-    const val = ev.target.value;
+    const val = ev.target.value.toUpperCase();
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       var retorno= [];
       for(let item of this.items){
           var nome = item.name.first + " " + item.name.last;
+          nome =  nome.toUpperCase();
           var email = item.email;
+          email = email.toUpperCase();
           if(nome.indexOf(val)!= -1 || email.indexOf(val) != -1){
             retorno.push(item);
           }
